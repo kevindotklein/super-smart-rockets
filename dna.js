@@ -1,4 +1,4 @@
-var lifespan = 600;
+var lifespan = 300;
 
 class DNA {
   constructor(genes) {

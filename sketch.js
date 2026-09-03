@@ -4,7 +4,7 @@ var target;
 var gen;
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
+  createCanvas(900, 800);
   population = new Population();
   count = 0;
   target = createVector(width / 2, 80);
