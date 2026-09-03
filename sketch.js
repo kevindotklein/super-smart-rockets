@@ -4,7 +4,7 @@ var target;
 var gen;
 
 function setup() {
-  createCanvas(900, 800);
+  (isMobileDevice()) ? createCanvas(windowWidth, windowHeight) : createCanvas(900, 800);
   population = new Population();
   count = 0;
   target = createVector(width / 2, 80);
@@ -39,4 +39,8 @@ function draw() {
   // max fit
   text(`max fit: ${maxFit || 0}`, 20, 80);
 
+}
+
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
