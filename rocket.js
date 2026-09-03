@@ -30,7 +30,7 @@ class Rocket {
     rotate(this.vel.heading());
 
     rectMode(CENTER);
-    rect(0, 0, 50, 10);
+    rect(0, 0, 37, 7);
     pop();
   }
 

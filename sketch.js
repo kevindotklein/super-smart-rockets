@@ -4,7 +4,7 @@ var target;
 var gen;
 
 function setup() {
-  (isMobileDevice()) ? createCanvas(windowWidth, windowHeight) : createCanvas(900, 800);
+  (isMobileDevice()) ? createCanvas(windowWidth, windowHeight) : createCanvas(675, 600);
   pixelDensity(1);
   population = new Population();
   count = 0;
@@ -24,10 +24,10 @@ function draw() {
 
 
   // target
-  ellipse(target.x, target.y, 25, 25);
+  ellipse(target.x, target.y, 18, 18);
 
   // lifespan
-  textSize(24);
+  textSize(16);
   textAlign(LEFT, TOP);
   fill(255);
   noStroke();
