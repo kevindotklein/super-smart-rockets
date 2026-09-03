@@ -5,6 +5,7 @@ var gen;
 
 function setup() {
   (isMobileDevice()) ? createCanvas(windowWidth, windowHeight) : createCanvas(900, 800);
+  pixelDensity(1);
   population = new Population();
   count = 0;
   target = createVector(width / 2, 80);
