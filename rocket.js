@@ -2,7 +2,7 @@ var maxFit;
 
 class Rocket {
   constructor(dna) {
-    this.pos = createVector(width/2, height-30);
+    this.pos = createVector(CANVAS_W/2, CANVAS_H-30);
     this.vel = createVector();
     this.acc = createVector();
     this.dna = dna || new DNA();

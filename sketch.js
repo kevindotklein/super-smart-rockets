@@ -1,14 +1,18 @@
+const CANVAS_W = 675;
+const CANVAS_H = 600;
+
 var population;
 var count;
 var target;
 var gen;
 
 function setup() {
-  (isMobileDevice()) ? createCanvas(windowWidth, windowHeight) : createCanvas(675, 600);
+  createCanvas(CANVAS_W, CANVAS_H);
   pixelDensity(1);
+  handleScale();
   population = new Population();
   count = 0;
-  target = createVector(width / 2, 80);
+  target = createVector(CANVAS_W / 2, 80);
   gen = 0;
 }
 
@@ -42,6 +46,18 @@ function draw() {
 
 }
 
-const isMobileDevice = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+function handleScale() {
+  let scale = Math.min(
+    windowWidth / CANVAS_W,
+    windowHeight / CANVAS_H,
+    1
+  );
+
+  let canvasEl = document.querySelector('canvas');
+  canvasEl.style.transformOrigin = 'top left';
+  canvasEl.style.transform = `scale(${scale})`;
+
+  canvasEl.style.position = 'absolute';
+  canvasEl.style.left = `${(windowWidth - CANVAS_W * scale) / 2}px`;
+  canvasEl.style.top = `${(windowHeight - CANVAS_H * scale) / 2}px`;
 }
