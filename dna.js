@@ -1,4 +1,4 @@
-var lifespan = 300;
+var lifespan = 350;
 
 class DNA {
   constructor(genes) {
@@ -20,5 +20,14 @@ class DNA {
       (i < mid) ? child[i] = this.genes[i] : child[i] = partner.genes[i];
     }
     return new DNA(child);
+  }
+
+  mutation() {
+    for (let i = 0; i < this.genes.length; i++) {
+      if (random(1) < 0.01) {
+        this.genes[i] = p5.Vector.random2D();
+        this.genes[i].setMag(0.2);
+      }
+    }
   }
 }

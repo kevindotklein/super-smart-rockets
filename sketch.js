@@ -6,6 +6,11 @@ var count;
 var target;
 var gen;
 
+var rx = CANVAS_W / 2;
+var ry = 250;
+var rw = 250;
+var rh = 10;
+
 function setup() {
   createCanvas(CANVAS_W, CANVAS_H);
   pixelDensity(1);
@@ -29,6 +34,11 @@ function draw() {
 
   // target
   ellipse(target.x, target.y, 18, 18);
+
+  // obstacle
+  fill(255);
+  rectMode(CENTER)
+  rect(rx, ry, rw, rh);
 
   // lifespan
   textSize(16);
