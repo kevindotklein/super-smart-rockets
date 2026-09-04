@@ -7,6 +7,7 @@ class Rocket {
     this.acc = createVector();
     this.dna = dna || new DNA();
     this.fitness = 0;
+    this.completed = false;
   }
 
   // if m = 1
@@ -15,10 +16,19 @@ class Rocket {
   }
 
   update() {
+    let d = dist(this.pos.x, this.pos.y, target.x, target.y);
+    // reach the target
+    if (d < 10) {
+      this.completed = true;
+      this.pos = target.copy();
+    }
+
     this.applyForce(this.dna.genes[count]);
 
-    this.vel.add(this.acc);
-    this.pos.add(this.vel);
+    if (!this.completed) {
+      this.vel.add(this.acc);
+      this.pos.add(this.vel);
+    }
 
     this.acc.mult(0);
   }
@@ -38,6 +48,7 @@ class Rocket {
     let d = dist(this.pos.x, this.pos.y, target.x, target.y);
     // set width as max fitness
     this.fitness = map(d, 0, width, width, 0);
+    if (this.completed) { this.fitness *= 10; }
   }
 
 }
