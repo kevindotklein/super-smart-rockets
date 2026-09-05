@@ -22,6 +22,7 @@ class Rocket {
     if (d < 10) {
       this.completed = true;
       this.pos = target.copy();
+      finished = true;
     }
 
     if (
@@ -40,6 +41,7 @@ class Rocket {
       this.pos.y < 0
     ) {
       this.crashed = true;
+      this.aliveUntil = count;
     }
 
     this.applyForce(this.dna.genes[count]);
@@ -93,11 +95,14 @@ class Population {
   }
 
   evaluate() {
+    this.matingPool = [];
+    this.maxFitIdx = -1;
     maxFit = 0;
     for (let i = 0; i < this.size; i++) {
       this.rockets[i].calcFitness();
       if (this.rockets[i].fitness > maxFit) {
         maxFit = this.rockets[i].fitness;
+        this.maxFitIdx = i;
       }
     }
 
@@ -105,8 +110,6 @@ class Population {
     for (let i = 0; i < this.size; i++) {
       this.rockets[i].fitness /= maxFit;
     }
-    this.matingPool = [];
-
     for (let i = 0; i < this.size; i++) {
       let n = this.rockets[i].fitness * 100;
       for (let j = 0; j < n; j++) {
@@ -124,6 +127,8 @@ class Population {
       child.mutation();
       newRockets[i] = new Rocket(child);
     }
+    // propagating max fit rocket ahead
+    newRockets[0] = new Rocket(this.rockets[this.maxFitIdx].dna);
     this.rockets = newRockets;
   }
 }

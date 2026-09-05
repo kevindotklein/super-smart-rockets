@@ -5,6 +5,7 @@ var population;
 var count;
 var target;
 var gen;
+var finished;
 
 var rx = CANVAS_W / 2;
 var ry = 250;
@@ -19,12 +20,13 @@ function setup() {
   count = 0;
   target = createVector(CANVAS_W / 2, 80);
   gen = 0;
+  finished = false;
 }
 
 function draw() {
   background(0);
   population.run();
-  if (count >= lifespan) {
+  if (count >= lifespan && !finished) {
     population.evaluate();
     population.selection();
     gen++;
@@ -46,7 +48,7 @@ function draw() {
   fill(255);
   noStroke();
   text(`lifespan (${lifespan} max): ${count}`, 20, 20);
-  count++;
+  !finished && count++;
 
   // gen
   text(`gen: ${gen}`, 20, 50);
